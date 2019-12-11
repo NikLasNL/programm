@@ -1,3 +1,6 @@
+# Клиентская часть часть для мессенджера
+# 12/12/2019
+# ver 1.1.0
 import sys
 from PyQt5 import QtWidgets
 from gui import design
