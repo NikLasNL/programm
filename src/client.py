@@ -30,7 +30,7 @@ class ChatWindow(QtWidgets.QMainWindow, design.Ui_MainWindow):
     reactor = None
 
     def __init__(self):
-        super.__init__()
+        super().__init__()
         self.setupUi(self)
         self.init_handlers()
 
@@ -59,7 +59,7 @@ from twisted.internet import reactor
 
 reactor.connectTCP(
     "localhost",
-    1234,
+    1334,
     Connector(window)
 )
 

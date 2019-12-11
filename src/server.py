@@ -24,10 +24,10 @@ class ServerProtocol(LineOnlyReceiver):
             for user in self.factory.clients:
                 user.sendLine(content.encode())
         else:
-            #login:admin -> admin
+            # login:admin -> admin
 
             if content.startswith("login:"):
-                login = content.replace("login:","")
+                login = content.replace("login:", "")
 
                 for user in self.factory.clients:
                     if user.login == login:
@@ -48,14 +48,14 @@ class Server(ServerFactory):
     history: list
 
     def startFactory(self):
-        self.clients =[]
-        self.history=[]
+        self.clients = []
+        self.history = []
         print("Server started")
 
     def stopFactory(self):
         print("Server closed")
 
-    def send_history(self,client: ServerProtocol):
+    def send_history(self, client: ServerProtocol):
         client.sendLine("Wellcome!".encode())
 
         last_messages = self.history[-10:]
@@ -63,14 +63,6 @@ class Server(ServerFactory):
         for msg in last_messages:
             client.sendLine(msg.encode())
 
-reactor.listen(1123 , Server())
+
+reactor.listenTCP(1334, Server())
 reactor.run()
-
-
-
-
-
-
-
-
-
