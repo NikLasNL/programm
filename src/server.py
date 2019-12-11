@@ -17,7 +17,7 @@ class ServerProtocol(LineOnlyReceiver):
         content = line.decode()
 
         if self.login is not None:
-            content = f"Messages from {self.login}: {content}"
+            content = f"Сообщение от {self.login}: {content}"
 
             self.factory.history.append(content)
 
@@ -31,7 +31,7 @@ class ServerProtocol(LineOnlyReceiver):
 
                 for user in self.factory.clients:
                     if user.login == login:
-                        self.sendLine("Login already exists! Try another one".encode())
+                        self.sendLine("Введите другой логин!!!".encode())
                         return
 
                 self.login = login
@@ -39,7 +39,7 @@ class ServerProtocol(LineOnlyReceiver):
                 self.factory.send_history(self)
 
             else:
-                self.sendLine("Invalid Login".encode())
+                self.sendLine("Неверный логин".encode())
 
 
 class Server(ServerFactory):
@@ -56,7 +56,7 @@ class Server(ServerFactory):
         print("Server closed")
 
     def send_history(self, client: ServerProtocol):
-        client.sendLine("Wellcome!".encode())
+        client.sendLine("Добро пожаловать!".encode())
 
         last_messages = self.history[-10:]
 
