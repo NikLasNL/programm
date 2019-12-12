@@ -62,7 +62,7 @@ from twisted.internet import reactor
 
 reactor.connectTCP(
     "91.201.41.118",
-    1334,
+    23234,
     Connector(window)
 )
 

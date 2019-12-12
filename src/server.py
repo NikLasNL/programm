@@ -37,6 +37,7 @@ class ServerProtocol(LineOnlyReceiver):
                 self.login = login
                 self.factory.clients.append(self)
                 self.factory.send_history(self)
+                print(f"New User: {self.login}")
 
             else:
                 self.sendLine("Неверный логин".encode())
@@ -57,7 +58,6 @@ class Server(ServerFactory):
 
     def send_history(self, client: ServerProtocol):
         client.sendLine("Добро пожаловать!".encode())
-        print(f"Авторизировался новый клиент: {self.protocol.login}")
 
         last_messages = self.history[-10:]
 
@@ -65,5 +65,5 @@ class Server(ServerFactory):
             client.sendLine(msg.encode())
 
 
-reactor.listenTCP(1334, Server())
+reactor.listenTCP(23234, Server())
 reactor.run()
