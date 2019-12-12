@@ -57,6 +57,7 @@ class Server(ServerFactory):
 
     def send_history(self, client: ServerProtocol):
         client.sendLine("Добро пожаловать!".encode())
+        print(f"Авторизировался новый клиент: {self.protocol.login}")
 
         last_messages = self.history[-10:]
 

@@ -61,7 +61,7 @@ qt5reactor.install()
 from twisted.internet import reactor
 
 reactor.connectTCP(
-    "localhost",
+    "91.201.41.118",
     1334,
     Connector(window)
 )
